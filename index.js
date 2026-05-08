@@ -8,8 +8,7 @@ const { GoogleGenAI } = require('@google/genai');
 dotenv.config();
 
 const corsOption = {
-  origin: "*",
-  credentials: true,
+  origin: "*"
 };
 
 const app = express();
@@ -87,7 +86,6 @@ app.post('/api/generate-meal', async (req, res) => {
 // Get all generated meals
 app.get('/api/meals', async (req, res) => {
     try {
-        // Fetch meals, sorted by newest first
         const meals = await Meal.find().sort({ createdAt: -1 });
         return res.status(200).json({
             success: true,
@@ -107,3 +105,6 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
+module.exports = app;
